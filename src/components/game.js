@@ -24,7 +24,7 @@ const Game = () => {
   };
 
   const winner = get_winner(getStatusOfBoard(), player);
-  const player_turn = (stepNumber % 2 ? "Guest" : "Bot");
+  const player_turn = (stepNumber % 2 ? "Guest" : "Opponent");
 
   const handleClick = (i) => {
     const historyPoint = historyOfMoves.slice(0, stepNumber + 1);
