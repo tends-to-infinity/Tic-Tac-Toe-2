@@ -15,23 +15,23 @@ body {
   overflow-x: hidden;
 }
 
-.gaAppHead {
+.ga543AppHead {
   margin: 2rem 0rem 1rem 0rem;
   text-align: center;
   font-size: 3em;
 }
 
-.gaResultHead {
+.ga543ResultHead {
   padding: 1rem 0rem 1rem 0rem;
   font-size: 2em;
 }
 
-.gaBoardAndHeader {
+.ga543BoardAndHeader {
   display: grid;
   place-items: center;
 }
 
-.boBoard {
+.bo846Board {
   max-width: 310px;
   max-height: 310px;
   display: grid;
@@ -39,7 +39,7 @@ body {
   position: relative;
 }
 
-.sqSquares {
+.sq219Squares {
   width: 100px;
   height: 100px;
   border: 2px solid white;
@@ -53,12 +53,12 @@ body {
   font-size: 2em;
 }
 
-.gaInfoWrapper {
+.ga543InfoWrapper {
   display: block;
   justify-content: space-between;
 }
 
-.gaResetBtn {
+.ga543ResetBtn {
   width: 150px;
   min-height: 50px;
   border: 0px;
@@ -69,27 +69,27 @@ body {
   font-family: var(--font);
 }
 
-.gaResetBtn:hover {
+.ga543ResetBtn:hover {
   transform: scale(1.1);
 }
 
-.gaInfoWrapper {
+.ga543InfoWrapper {
   width: 90%;
   padding: 10px;
 }
 
-.gaInfoWrapper .gaDropdown {
+.ga543InfoWrapper .ga543Dropdown {
   position: relative;
   display: flex;
   justify-content: flex-end;
 }
 
-.gaDropdown .gaHistoryHead {
+.ga543Dropdown .ga543HistoryHead {
   font-size: 2em;
   cursor: pointer;
 }
 
-.gaDropdownContent {
+.ga543DropdownContent {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -101,7 +101,7 @@ body {
   z-index: 1;
 }
 
-.gaDropdownContent .gaDropdownList {
+.ga543DropdownContent .ga543DropdownList {
   border: 0px;
   color: var(--cyan);
   width: 100%;
@@ -110,51 +110,91 @@ body {
   font-size: 1.1em;
 }
 
-.gaGameStatus {
+.ga543GameStatus {
   color: green;
   font-size: 30px;
 }
 
-.gaPromptBackdrop {
+
+.lo123ChoiceFormContainer{
   width: 100%;
   height: 100vh;
-  background: var(--lg-white);
-  position: absolute;
-  z-index: 100;
   display: grid;
-  place-items: center;
+  place-items:center;
 }
 
-.gaPlayerPrompt {
-  height: 550px;
-  width: 350px;
+.lo123ChoiceFormContainer .lo123ChoiceForm{
+    width: 260px;
+    min-height: 260px;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 20px 25px 20px 20px ;
+}
+
+.lo123ChoiceFormLabel{
+  font-size: 1.5em;
+}
+
+.lo123ChoiceFormInput{
+  width: 100%;
+  border: 0px;
+  padding: 5px 0px 5px 5px;
+  margin: 10px 0px 10px 0px;
+  outline: none;
+}
+
+.lo123ChoiceBtns{
   display: flex;
-  flex-direction: column;
-  background: white;
-  justify-content: space-evenly;
-  align-items: center;
-  
+  flex-direction: row;
 }
 
-.gaPromptHead {
-  color: black;
-  font-size: 2em;
-  text-align: center;
+.lo123PlayerPrompt{
+  width: 100%;
+  font-size: 1.5em;
 }
 
-.gaPlayerBtn {
+.lo123PlayerBtn {
   cursor: pointer;
   border: 0px;
-  background: var(--cyan);
+  background: var(--lg-white);
   border-radius: 0px;
-  width: 150px;
+  width: 120px;
   height: 50px;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: var(--font);
+  color:var(--white);
+  display: grid;
+  place-items: center;
+  margin: 10px 10px 10px 0px;
+}
+
+.lo123PlayerBtn:hover,
+.lo123PlayerBtn:focus,
+.lo123PlayerBtn.active{
+  border: 1px solid white;
+}
+
+.lo123ChoiceSubmitBtn {
+  outline: none;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+  height: 40px;
+  font-size: 1.5em;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lo123ChoiceSubmitBtn:hover{
+  transform: scale(1.05);
+
 }
 
 @media only screen and (max-width: 768px) {
-  .sqSquares {
+  .sq219Squares {
     height: 80px;
     width: 80px;
   }

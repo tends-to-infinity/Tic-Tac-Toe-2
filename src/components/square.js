@@ -1,13 +1,16 @@
 import React from "react";
+import Button from "./button";
 
 const Square = ({ value, onClick }) => {
-  console.log(`${value}`);
-  const style = value ? `sqSquares ${value}` : `sqSquares`;
+
+  const style = value ? `sq219Squares ${value}` : `sq219Squares`;
 
   return (
-    <button className={style} onClick={onClick}>
-      {value}
-    </button>
+    <Button
+      className={style}
+      value={value}
+      onClick={onClick}
+    />
   );
 };
 

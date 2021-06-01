@@ -2,11 +2,13 @@ import React from "react";
 import Square from "./square";
 
 const Board = ({ squares, onClick }) => (
-  <div className="boBoard">
-    {squares.map((square, i) => (
-      <Square key={i}
+  <div className="bo846Board">
+    {squares.map((square, squareIndex) => (
+      <Square
+        key={squareIndex}
         value={square}
-        onClick={() => onClick(i)} />
+        onClick={() => onClick(squareIndex)}
+      />
     ))}
   </div>
 );
