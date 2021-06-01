@@ -131,7 +131,6 @@ const Game = ({ location }) => {
 
         </div>
       </div>
-    </>
   );
 };
 
