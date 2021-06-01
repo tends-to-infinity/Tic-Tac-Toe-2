@@ -1,69 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { getWinner } from "./winner";
+import React, { useState } from "react";
+import { get_winner } from "./winner";
 import Board from "./board";
-import Button from "./button";
 
-const Game = ({ location }) => {
+const Game = () => {
 
-
-  const squaresArray = Array(9).fill(null);
-  const [ player1, setPlayer1 ] = useState("")
-  const [ player2, setPlayer2 ] = useState("")
-  const [ value, setValue ] = useState("")
-
-  const [ historyOfMoves, setHistoryOfMoves ] = useState(squaresArray);
-
+  const [ historyOfMoves, setHistoryOfMoves ] = useState([ null, null, null, null, null, null, null, null, null ]);
   const [ stepNumber, setStepNumber ] = useState(-1);
   const [ showHistory, setShowHistory ] = useState(false);
 
-  const jumpTo = (step) => {
-    setStepNumber(step);
-  };
-
-  useEffect(() => {
-    let { player1, player2, value } = location.state.props;
-    setValue(value)
-    setPlayer1(player1)
-    setPlayer2(player2)
-  }, [ location ])
-
-  let winner;
-
-  useEffect(() => {
-    if (winner || stepNumber === 8) {
-      setTimeout(() => {
-        jumpTo(-1)
-      }, 2000)
-    }
-  }, [ winner, stepNumber ])
 
   const getStatusOfBoard = () => {
-    let boardStatus = squaresArray;
+    let boardStatus = [ null, null, null, null, null, null, null, null, null ];
 
-
-    for (let step = 0; step <= stepNumber; step++) {
-      step % 2 !== 0
-        ? (boardStatus[ historyOfMoves[ step ] ] = value === "X" ? "O" : "X")
-        : (boardStatus[ historyOfMoves[ step ] ] = value);
-
+    for (let i = 0; i <= stepNumber; i++) {
+      i % 2 !== 0
+        ? (boardStatus[ historyOfMoves[ i ] ] = "O")
+        : (boardStatus[ historyOfMoves[ i ] ] = "X");
     }
 
     return boardStatus;
   };
 
+  const winner = get_winner(getStatusOfBoard());
+  const player_turn = stepNumber % 2 ? "X" : "O";
 
-  winner = getWinner(getStatusOfBoard(), value, player1, player2);
-  const playerTurn = (stepNumber % 2 ? player1 : player2);
-
-
-  const handleClick = (clicked) => {
+  const handleClick = (i) => {
     const historyPoint = historyOfMoves.slice(0, stepNumber + 1);
-    const moveInHistory = historyPoint.indexOf(clicked);
+    const moveInHistory = historyPoint.indexOf(i);
 
     if (winner || moveInHistory !== -1) return;
 
-    let copyOfHistoryMoves = historyOfMoves;
-    copyOfHistoryMoves[ stepNumber + 1 ] = clicked;
+    var copyOfHistoryMoves = historyOfMoves;
+    copyOfHistoryMoves[ stepNumber + 1 ] = i;
 
     for (let index = stepNumber + 2; index < 9; index++) {
       copyOfHistoryMoves[ index ] = null;
@@ -73,64 +41,58 @@ const Game = ({ location }) => {
     setStepNumber(stepNumber + 1);
   };
 
+  const jumpTo = (step) => {
+    setStepNumber(step);
+  };
+
   const renderMoves = () =>
     historyOfMoves
-      .filter((value) => value !== null)
-      .map((value, moveNum) => {
-        let val = "Move #" + (moveNum + 1);
+      .filter((value) => value != null)
+      .map((value, idx) => {
         return (
-          <Button
-            key={moveNum}
-            className="ga543DropdownList"
-            value={val}
-            onClick={() => jumpTo(moveNum)}
-          />
+          <button
+            className="gaDropdownList"
+            key={idx}
+            onClick={() => jumpTo(idx)}
+          >
+            Move #{idx + 1}
+          </button>
         );
       });
-
   return (
-
-
-    <div className="ga543BoardAndHistory">
-      <div className="ga543InfoWrapper">
-        <div className="ga543Dropdown">
+    <div className="gaBoardAndHistory">
+      <div className="gaInfoWrapper">
+        <div className="gaDropdown">
           <span
-            className="ga543HistoryHead"
+            className="gaHistoryHead"
             onClick={() => setShowHistory((showHistory) => !showHistory)}
           >
             Moves
             </span>
-          {
-            showHistory && (
-              <div className="ga543DropdownContent">{renderMoves()}</div>
-            )}
+          {showHistory && (
+            <div className="gaDropdownContent">{renderMoves()}</div>
+          )}
         </div>
       </div>
-      <div className="ga543BoardAndHeader">
-        <div className="ga543AppHead">Tic Tac Toe </div>
-        <Board
-          squares={getStatusOfBoard()}
-          onClick={handleClick}
-        />
-        <div className="ga543ResultHead">
-          {
-            winner ? (
-              <span className="ga543GameStatus">Winner: {winner}</span>
-            ) : stepNumber !== 8 ? (
-              "Next Player: " + playerTurn
-            ) : (
-              <span className="ga543GameStatus">Game Ends in a Draw</span>
-            )}
+      <div className="gaBoardAndHeader">
+        <div className="gaAppHead">Tic Tac Toe </div>
+        <Board squares={getStatusOfBoard()} onClick={handleClick} />
+        <div className="gaResultHead">
+          {winner ? (
+            <span className="gaGameStatus">Winner: {winner}</span>
+          ) : stepNumber !== 8 ? (
+            "Next Player: " + player_turn
+          ) : (
+            <span className="gaGameStatus">Game Ends in a Draw</span>
+          )}
         </div>
-        <div className="ga543ResetButtonDiv">
-          <Button
-            className="ga543ResetBtn"
-            value="Reset"
-            onClick={() => jumpTo(-1)}
-          />
-
+        <div className="gaResetButtonDiv">
+          <button className="gaResetBtn" onClick={() => jumpTo(-1)}>
+            Reset
+            </button>
         </div>
       </div>
+    </div>
   );
 };
 
