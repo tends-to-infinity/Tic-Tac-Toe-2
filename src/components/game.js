@@ -5,12 +5,14 @@ import Button from "./button";
 
 const Game = ({ location }) => {
 
+
   const squaresArray = Array(9).fill(null);
   const [ player1, setPlayer1 ] = useState("")
   const [ player2, setPlayer2 ] = useState("")
   const [ value, setValue ] = useState("")
 
   const [ historyOfMoves, setHistoryOfMoves ] = useState(squaresArray);
+
   const [ stepNumber, setStepNumber ] = useState(-1);
   const [ showHistory, setShowHistory ] = useState(false);
 
@@ -38,17 +40,21 @@ const Game = ({ location }) => {
   const getStatusOfBoard = () => {
     let boardStatus = squaresArray;
 
+
     for (let step = 0; step <= stepNumber; step++) {
       step % 2 !== 0
         ? (boardStatus[ historyOfMoves[ step ] ] = value === "X" ? "O" : "X")
         : (boardStatus[ historyOfMoves[ step ] ] = value);
+
     }
 
     return boardStatus;
   };
 
+
   winner = getWinner(getStatusOfBoard(), value, player1, player2);
   const playerTurn = (stepNumber % 2 ? player1 : player2);
+
 
   const handleClick = (clicked) => {
     const historyPoint = historyOfMoves.slice(0, stepNumber + 1);
@@ -83,6 +89,7 @@ const Game = ({ location }) => {
       });
 
   return (
+
 
     <div className="ga543BoardAndHistory">
       <div className="ga543InfoWrapper">
@@ -121,9 +128,10 @@ const Game = ({ location }) => {
             value="Reset"
             onClick={() => jumpTo(-1)}
           />
+
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
