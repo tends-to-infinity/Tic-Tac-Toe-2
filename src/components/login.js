@@ -57,20 +57,12 @@ const Login = () => {
               className="lo123PlayerBtn"
               onClick={() => {
                 setValue("X");
-                    $('#lo123PlayerBtn').css({
-                       'background-color': 'red',
-                       'color': 'white'
-                    });
               }}
             >X</div>
             <div
               className="lo123PlayerBtn"
               onClick={() => {
                 setValue("0");
-                    $('#lo123PlayerBtn').css({
-                       'background-color': 'red',
-                       'color': 'white'
-                    });
               }}
             >O</div>
           </div>
