@@ -171,7 +171,7 @@ body {
 .lo123PlayerBtn:hover,
 .lo123PlayerBtn:focus,
 .lo123PlayerBtn.active{
-  border: 1px solid red;
+  border: 1px solid white;
 }
 
 .lo123ChoiceSubmitBtn {
